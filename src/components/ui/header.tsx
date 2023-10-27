@@ -111,8 +111,8 @@ const Header = () => {
         </SheetContent>
       </Sheet>
       <h1 className="text-lg font-semibold">
-        <span className="text-pink-500">BIA </span>
-        STORE
+        <span className="text-primary">John </span>
+        Store
       </h1>
 
       <Button size="icon" variant="outline">
@@ -121,5 +121,6 @@ const Header = () => {
     </Card>
   );
 };
+
 
 export default Header;
