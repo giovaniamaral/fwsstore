@@ -111,7 +111,7 @@ const Header = () => {
         </SheetContent>
       </Sheet>
       <h1 className="text-lg font-semibold">
-        <span className="text-primary">John </span>
+        <span className="text-pink-500">Bia </span>
         Store
       </h1>
 
@@ -121,6 +121,5 @@ const Header = () => {
     </Card>
   );
 };
-
 
 export default Header;
