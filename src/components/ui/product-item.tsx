@@ -1,31 +1,59 @@
-import { Product } from "@prisma/client";
+import { ProductWithTotalPrice } from "@/helpers/product";
 import Image from "next/image";
+import Link from "next/link";
+import DiscountBadge from "./discount-badge";
+import { cn } from "@/lib/utils";
+
 interface ProductItemProps {
-  product: Product;
+  product: ProductWithTotalPrice;
+  className?: string;
 }
 
-const ProductItem = ({ product }: ProductItemProps) => {
+const ProductItem = ({ product, className }: ProductItemProps) => {
   return (
-    <div className="flex max-w-[156px] flex-col gap-4">
-      <div className="flex h-[170px] w-[156px] justify-center rounded-lg bg-accent">
+    <Link
+      href={`/product/${product.slug}`}
+      className={cn("flex min-w-[156px] flex-col gap-4", className)}
+    >
+      <div className="relative flex aspect-square w-full items-center justify-center rounded-lg bg-accent">
         <Image
           src={product.imageUrls[0]}
-          alt={product.name}
           height={0}
           width={0}
           sizes="100vw"
-          className="h-[90x] w-auto max-w-[80%]"
-          style={{
-            objectFit: "contain",
-          }}
+          className="h-auto max-h-[70%] w-auto max-w-[80%] object-contain"
+          alt={product.name}
         />
+
+        {product.discountPercentage > 0 && (
+          <DiscountBadge className="absolute left-3 top-3">
+            {product.discountPercentage}
+          </DiscountBadge>
+        )}
       </div>
-      <div>
-        <p className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-sm">
-          {product.name}
-        </p>
+
+      <div className="flex flex-col gap-1">
+        <p className="truncate text-sm">{product.name}</p>
+
+        <div className="flex items-center gap-2 ">
+          {product.discountPercentage > 0 ? (
+            <>
+              <p className="truncate font-semibold lg:text-lg">
+                R$ {product.totalPrice.toFixed(2)}
+              </p>
+
+              <p className="truncate text-xs line-through opacity-75 lg:text-sm">
+                R$ {Number(product.basePrice).toFixed(2)}
+              </p>
+            </>
+          ) : (
+            <p className="truncate text-sm font-semibold">
+              R$ {product.basePrice.toFixed(2)}
+            </p>
+          )}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

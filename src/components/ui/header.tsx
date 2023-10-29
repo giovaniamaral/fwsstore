@@ -111,7 +111,7 @@ const Header = () => {
         </SheetContent>
       </Sheet>
       <h1 className="text-lg font-semibold">
-        <span className="text-pink-500">Bia </span>
+        <span className="text-primary">FSW </span>
         Store
       </h1>
 
