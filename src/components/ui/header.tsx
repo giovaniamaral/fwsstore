@@ -11,10 +11,17 @@ import {
 } from "lucide-react";
 import { Button } from "./button";
 import { Card } from "./card";
-import { SheetContent, SheetTrigger, Sheet, SheetHeader } from "./sheet";
+import {
+  SheetContent,
+  SheetTrigger,
+  Sheet,
+  SheetHeader,
+  SheetClose,
+} from "./sheet";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Separator } from "@radix-ui/react-separator";
+import Link from "next/link";
 
 const Header = () => {
   const { status, data } = useSession();
@@ -51,7 +58,7 @@ const Header = () => {
                       <AvatarImage
                         src={data.user.image}
                         //className="rounded-2xl"
-                        style={{borderRadius:"50px"}}
+                        style={{ borderRadius: "50px" }}
                       />
                     )}
                   </Avatar>
@@ -104,10 +111,17 @@ const Header = () => {
               Ofertas
             </Button>
 
-            <Button variant="outline" className="w-full justify-start gap-2">
-              <ListOrderedIcon size={16} />
-              Catálago
-            </Button>
+            <SheetClose asChild>
+              <Link href="/catalog">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <ListOrderedIcon size={16} />
+                  Catálago
+                </Button>
+              </Link>
+            </SheetClose>
           </div>
         </SheetContent>
       </Sheet>
