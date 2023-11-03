@@ -50,7 +50,8 @@ const Header = () => {
                     {data.user.image && (
                       <AvatarImage
                         src={data.user.image}
-                        className="rounded-2xl"
+                        //className="rounded-2xl"
+                        style={{borderRadius:"50px"}}
                       />
                     )}
                   </Avatar>
