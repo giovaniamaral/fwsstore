@@ -58,7 +58,7 @@ const Header = () => {
                       <AvatarImage
                         src={data.user.image}
                         //className="rounded-2xl"
-                        style={{ borderRadius: "50px" }}
+                        style={{ borderRadius: "60%" }}
                       />
                     )}
                   </Avatar>
@@ -101,10 +101,17 @@ const Header = () => {
             )}
             {/* Botão de deslogar-se FIM*/}
 
-            <Button variant="outline" className="w-full justify-start gap-2">
-              <HomeIcon size={16} />
-              Início
-            </Button>
+            <SheetClose asChild>
+              <Link href="/">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <HomeIcon size={16} />
+                  Início
+                </Button>
+              </Link>
+            </SheetClose>
 
             <Button variant="outline" className="w-full justify-start gap-2">
               <PercentIcon size={16} />
@@ -125,10 +132,12 @@ const Header = () => {
           </div>
         </SheetContent>
       </Sheet>
-      <h1 className="text-lg font-semibold">
-        <span className="text-pink-500">BG </span>
-        Store
-      </h1>
+      <Link href="/">
+        <h1 className="text-lg font-semibold">
+          <span className="text-pink-500">BG </span>
+          Store
+        </h1>
+      </Link>
 
       <Button size="icon" variant="outline">
         <ShoppingCartIcon />
